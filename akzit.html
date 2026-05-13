@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akz IT Solutions — About & Contact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0f;
+    --paper: #f5f4ef;
+    --accent: #e8441a;
+    --accent2: #1a4ee8;
+    --mid: #6b6b78;
+    --line: #d8d7d0;
+    --card: #ffffff;
+    --code: #0d1117;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 2.5rem;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.3rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 0.25rem; }
+  .nav-links a {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: 2rem;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    background: var(--ink); color: var(--paper);
+  }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px; background: none; border: none;
+  }
+  .hamburger span {
+    width: 24px; height: 2px; background: var(--ink);
+    transition: transform 0.3s, opacity 0.3s;
+    display: block;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: var(--paper);
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 2rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
+    color: var(--ink); text-decoration: none; letter-spacing: -0.02em;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--accent); }
+
+  /* ── PAGE WRAPPER ─────────────────────────── */
+  .page { padding-top: 80px; }
+
+  /* ── SECTION TABS ─────────────────────────── */
+  .section-tabs {
+    display: flex; justify-content: center;
+    padding: 3rem 2rem 0;
+    gap: 1rem;
+  }
+  .tab-btn {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 0.65rem 2rem;
+    border: 2px solid var(--ink);
+    border-radius: 2rem;
+    background: transparent; color: var(--ink);
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+  }
+  .tab-btn.active { background: var(--ink); color: var(--paper); }
+  .tab-btn:hover:not(.active) { background: var(--line); }
+
+  /* ── SECTIONS ─────────────────────────────── */
+  .section-panel { display: none; }
+  .section-panel.active { display: block; }
+
+  /* ═══════════════════════════════════════════
+     ABOUT PAGE
+  ═══════════════════════════════════════════ */
+
+  /* Hero */
+  .about-hero {
+    padding: 5rem 2.5rem 4rem;
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+
+  .about-hero-label {
+    font-family: 'Syne', sans-serif; font-size: 0.75rem;
+    font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent);
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .about-hero-label::before {
+    content: ''; display: block;
+    width: 32px; height: 2px; background: var(--accent);
+  }
+
+  .about-hero h1 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.0; letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .about-hero h1 em { font-style: normal; color: var(--accent); }
+
+  .about-hero p {
+    font-size: 1.05rem; line-height: 1.75;
+    color: var(--mid); max-width: 480px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase;
+    background: var(--accent); color: #fff;
+    padding: 0.9rem 2rem;
+    border-radius: 2rem; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(232,68,26,0.35);
+  }
+
+  .about-hero-visual {
+    position: relative;
+  }
+  .visual-card {
+    background: var(--code);
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 1.5rem;
+    position: relative;
+  }
+  .visual-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 36px; background: #1c1c24;
+    display: flex; align-items: center;
+  }
+  .dots {
+    position: absolute; top: 12px; left: 1.2rem;
+    display: flex; gap: 6px; z-index: 1;
+  }
+  .dots span {
+    width: 12px; height: 12px; border-radius: 50%;
+  }
+  .dots span:nth-child(1) { background: #ff5f57; }
+  .dots span:nth-child(2) { background: #febc2e; }
+  .dots span:nth-child(3) { background: #28c840; }
+  .code-block {
+    margin-top: 1.5rem;
+    font-family: 'DM Mono', 'Courier New', monospace;
+    font-size: 0.8rem; line-height: 1.8;
+    color: #a0aec0;
+  }
+  .code-block .kw { color: #f472b6; }
+  .code-block .fn { color: #60a5fa; }
+  .code-block .str { color: #34d399; }
+  .code-block .cm { color: #4a5568; }
+  .code-block .num { color: #fb923c; }
+  .code-typed::after {
+    content: '|'; animation: blink 1s step-end infinite; color: var(--accent);
+  }
+  @keyframes blink { 0%,100%{ opacity:1 } 50%{ opacity:0 } }
+
+  .stat-chips {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .chip {
+    background: #1c1c24;
+    border: 1px solid #2d2d3a;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    display: flex; flex-direction: column; gap: 0.2rem;
+  }
+  .chip-num {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 1.3rem; color: #fff; line-height: 1;
+  }
+  .chip-label {
+    font-size: 0.7rem; color: #6b7280; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+
+  /* About Divider */
+  .about-divider {
+    max-width: 1200px; margin: 0 auto;
+    height: 1px; background: var(--line);
+  }
+
+  /* Mission */
+  .mission-section {
+    max-width: 1200px; margin: 0 auto;
+    padding: 5rem 2.5rem;
+    display: grid; grid-template-columns: 320px 1fr; gap: 6rem;
+  }
+  .mission-label {
+    font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--mid);
+  }
+  .mission-heading {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 2.2rem; letter-spacing: -0.02em; line-height: 1.15;
+    margin-top: 1rem;
+  }
+  .mission-body p {
+    font-size: 1rem; line-height: 1.8; color: var(--mid);
+    margin-bottom: 1.5rem;
+  }
+  .mission-body p:last-child { margin-bottom: 0; }
+  .mission-highlight {
+    font-size: 1.2rem; font-weight: 500;
+    color: var(--ink); border-left: 3px solid var(--accent);
+    padding-left: 1.25rem; margin: 2rem 0;
+    line-height: 1.6;
+  }
+
+  /* Values */
+  .values-section {
+    background: var(--ink); padding: 5rem 2.5rem;
+  }
+  .values-inner { max-width: 1200px; margin: 0 auto; }
+  .values-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .values-header h2 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--paper); letter-spacing: -0.02em;
+  }
+  .values-header h2 em { font-style: normal; color: var(--accent); }
+  .values-header p { color: #6b6b78; max-width: 300px; line-height: 1.6; }
+
+  .values-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .value-card {
+    border: 1px solid #1e1e2a;
+    border-radius: 12px; padding: 2rem;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: default;
+  }
+  .value-card:hover {
+    border-color: var(--accent); transform: translateY(-4px);
+  }
+  .value-icon {
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    background: #1a1a26;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.25rem;
+  }
+  .value-card h3 {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.05rem; color: var(--paper);
+    margin-bottom: 0.65rem;
+  }
+  .value-card p { font-size: 0.88rem; line-height: 1.7; color: #6b6b78; }
+
+  /* Team */
+  .team-section {
+    max-width: 1200px; margin: 0 auto;
+    padding: 5rem 2.5rem;
+  }
+  .section-header { margin-bottom: 3rem; }
+  .section-header .over {
+    font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+    display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem;
+  }
+  .section-header .over::before {
+    content: ''; width: 24px; height: 2px; background: var(--accent);
+  }
+  .section-header h2 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.02em;
+  }
+
+  .team-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .team-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px; overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .team-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+  }
+  .team-avatar {
+    height: 180px; display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem; position: relative; overflow: hidden;
+  }
+  .team-avatar .avatar-bg {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+  }
+  .team-card-body { padding: 1.25rem; }
+  .team-card-body h4 {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1rem; margin-bottom: 0.25rem;
+  }
+  .team-card-body .role {
+    font-size: 0.78rem; color: var(--accent); font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem;
+  }
+  .team-card-body p { font-size: 0.83rem; color: var(--mid); line-height: 1.6; }
+
+  /* Technologies */
+  .tech-section {
+    background: #f0eee8;
+    padding: 4rem 2.5rem;
+  }
+  .tech-inner { max-width: 1200px; margin: 0 auto; }
+  .tech-inner .section-header { margin-bottom: 2.5rem; }
+  .tech-track {
+    display: flex; gap: 1rem; overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+  .tech-scroll {
+    display: flex; gap: 1rem; flex-shrink: 0;
+    animation: scroll-x 20s linear infinite;
+  }
+  @keyframes scroll-x {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .tech-pill {
+    flex-shrink: 0;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 2rem; padding: 0.55rem 1.2rem;
+    font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 600;
+    white-space: nowrap; color: var(--ink);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .tech-pill span { font-size: 1rem; }
+
+  /* ═══════════════════════════════════════════
+     CONTACT PAGE
+  ═══════════════════════════════════════════ */
+  .contact-hero {
+    max-width: 1200px; margin: 0 auto;
+    padding: 5rem 2.5rem 3rem;
+    text-align: center;
+  }
+  .contact-hero .over {
+    font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .contact-hero h1 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    letter-spacing: -0.03em; line-height: 1.05;
+    margin-bottom: 1.25rem;
+  }
+  .contact-hero h1 em { font-style: normal; color: var(--accent); }
+  .contact-hero p {
+    font-size: 1.05rem; color: var(--mid); line-height: 1.75; max-width: 520px; margin: 0 auto;
+  }
+
+  .contact-layout {
+    max-width: 1200px; margin: 0 auto;
+    padding: 2rem 2.5rem 6rem;
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; align-items: start;
+  }
+
+  /* Info column */
+  .contact-info-col {}
+  .info-block {
+    background: var(--code); border-radius: 14px; padding: 2rem;
+    margin-bottom: 1.5rem; color: var(--paper);
+  }
+  .info-block h3 {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.1rem; margin-bottom: 1.5rem;
+    color: #fff;
+  }
+  .info-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    margin-bottom: 1.25rem;
+  }
+  .info-item:last-child { margin-bottom: 0; }
+  .info-icon {
+    width: 38px; height: 38px; flex-shrink: 0;
+    border-radius: 8px; background: #1c1c2a;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .info-text { flex: 1; }
+  .info-text strong {
+    display: block; font-size: 0.78rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: #6b7280; margin-bottom: 0.2rem;
+  }
+  .info-text span { font-size: 0.92rem; color: #d1d5db; line-height: 1.5; }
+
+  .social-row {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+  .social-btn {
+    width: 38px; height: 38px;
+    border-radius: 8px; background: #1c1c2a;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer; border: none;
+  }
+  .social-btn:hover { background: var(--accent); transform: translateY(-2px); }
+
+  .hours-block {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 1.5rem;
+  }
+  .hours-block h3 {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1rem; margin-bottom: 1rem; color: var(--ink);
+  }
+  .hours-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.55rem 0; border-bottom: 1px solid var(--line);
+    font-size: 0.88rem;
+  }
+  .hours-row:last-child { border-bottom: none; }
+  .hours-row .day { color: var(--mid); }
+  .hours-row .time { font-weight: 500; }
+  .hours-row .badge {
+    font-size: 0.7rem; padding: 0.15rem 0.55rem;
+    border-radius: 2rem; font-weight: 600;
+    background: #dcfce7; color: #15803d;
+  }
+  .hours-row .badge.closed { background: #fee2e2; color: #b91c1c; }
+
+  /* Form column */
+  .contact-form-col {}
+  .form-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 18px; padding: 2.5rem;
+  }
+  .form-card h2 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 1.5rem; letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .form-card > p {
+    font-size: 0.9rem; color: var(--mid); margin-bottom: 2rem;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .field-group { margin-bottom: 1.25rem; }
+  .field-group label {
+    display: block; font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--mid); margin-bottom: 0.45rem;
+  }
+  .field-group input,
+  .field-group select,
+  .field-group textarea {
+    width: 100%;
+    border: 1.5px solid var(--line);
+    border-radius: 8px; padding: 0.75rem 1rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    color: var(--ink); background: var(--paper);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    resize: vertical;
+  }
+  .field-group input:focus,
+  .field-group select:focus,
+  .field-group textarea:focus {
+    border-color: var(--accent2);
+    box-shadow: 0 0 0 3px rgba(26,78,232,0.1);
+  }
+  .field-group textarea { min-height: 130px; }
+
+  .service-chips {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;
+  }
+  .service-chip {
+    padding: 0.45rem 1rem;
+    border: 1.5px solid var(--line);
+    border-radius: 2rem; font-size: 0.82rem; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+    background: transparent; color: var(--ink);
+    user-select: none;
+  }
+  .service-chip.selected {
+    border-color: var(--accent2);
+    background: var(--accent2); color: #fff;
+  }
+  .service-chip:hover:not(.selected) { border-color: var(--ink); }
+
+  .form-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 1.5rem; flex-wrap: wrap; gap: 1rem;
+  }
+  .form-note { font-size: 0.8rem; color: var(--mid); display: flex; align-items: center; gap: 0.4rem; }
+  .form-note::before { content: '🔒'; font-size: 0.85rem; }
+
+  .submit-btn {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase;
+    background: var(--ink); color: var(--paper);
+    border: none; border-radius: 2rem;
+    padding: 0.9rem 2.5rem; cursor: pointer;
+    display: flex; align-items: center; gap: 0.6rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .submit-btn:hover { background: var(--accent); transform: translateY(-2px); }
+  .submit-btn .arrow { font-size: 1.1rem; transition: transform 0.2s; }
+  .submit-btn:hover .arrow { transform: translateX(4px); }
+
+  .success-msg {
+    display: none;
+    background: #dcfce7; border: 1px solid #86efac;
+    border-radius: 10px; padding: 1.25rem;
+    font-size: 0.95rem; color: #15803d;
+    align-items: center; gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  .success-msg.show { display: flex; }
+
+  /* Map placeholder */
+  .map-section {
+    background: var(--ink); padding: 4rem 2.5rem;
+  }
+  .map-inner { max-width: 1200px; margin: 0 auto; }
+  .map-inner h2 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 1.6rem; color: var(--paper);
+    margin-bottom: 1.5rem; letter-spacing: -0.02em;
+  }
+  .map-placeholder {
+    border-radius: 14px; overflow: hidden; height: 280px;
+    background: #0d1117;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid #1e1e2a;
+    position: relative;
+  }
+  .map-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .map-pin {
+    position: relative; z-index: 2;
+    text-align: center;
+  }
+  .map-pin .pin-icon { font-size: 2.5rem; display: block; animation: bounce 2s ease-in-out infinite; }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .map-pin p {
+    font-family: 'Syne', sans-serif; font-weight: 600;
+    color: #fff; margin-top: 0.5rem;
+  }
+  .map-pin span { font-size: 0.82rem; color: #6b7280; }
+
+  /* FAQ */
+  .faq-section {
+    max-width: 800px; margin: 0 auto;
+    padding: 5rem 2.5rem;
+  }
+  .faq-section .section-header { margin-bottom: 2.5rem; }
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+  }
+  .faq-q {
+    width: 100%; text-align: left; background: none; border: none;
+    padding: 1.25rem 0;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Syne', sans-serif; font-weight: 600; font-size: 1rem;
+    cursor: pointer; color: var(--ink);
+    gap: 1rem;
+  }
+  .faq-q .icon {
+    width: 28px; height: 28px; flex-shrink: 0;
+    border-radius: 50%; border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; transition: transform 0.3s, background 0.3s;
+    color: var(--ink);
+  }
+  .faq-item.open .faq-q .icon {
+    transform: rotate(45deg); background: var(--accent); border-color: var(--accent); color: #fff;
+  }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    font-size: 0.92rem; line-height: 1.75; color: var(--mid);
+  }
+  .faq-item.open .faq-a {
+    max-height: 300px; padding-bottom: 1.25rem;
+  }
+
+  /* ── FOOTER ─────────────────────────────── */
+  footer {
+    background: var(--ink); color: #6b7280;
+    text-align: center; padding: 2rem;
+    font-size: 0.82rem;
+  }
+  footer strong { color: var(--paper); }
+  footer span { color: var(--accent); }
+
+  /* ── RESPONSIVE ─────────────────────────── */
+  @media (max-width: 900px) {
+    .about-hero { grid-template-columns: 1fr; gap: 2.5rem; }
+    .mission-section { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-layout { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .about-hero, .mission-section, .contact-hero,
+    .contact-layout, .team-section, .faq-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .values-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .tech-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .map-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .section-tabs { padding-top: 2rem; }
+    .form-card { padding: 1.5rem; }
+    .form-footer { flex-direction: column-reverse; align-items: stretch; }
+    .submit-btn { justify-content: center; }
+  }
+
+  /* ── ANIMATE ON SCROLL ───────────────────── */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Akz<span>.</span>IT</a>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#" onclick="switchTab('about')" class="active" id="nav-about">About</a>
+    <a href="#">Services</a>
+    <a href="#" onclick="switchTab('contact')" id="nav-contact">Contact</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#">Home</a>
+  <a href="#" onclick="switchTab('about'); closeMobile();">About</a>
+  <a href="#">Services</a>
+  <a href="#" onclick="switchTab('contact'); closeMobile();">Contact</a>
+</div>
+
+<div class="page">
+
+  <!-- TAB SWITCHER -->
+  <div class="section-tabs">
+    <button class="tab-btn active" id="tab-about" onclick="switchTab('about')">About Us</button>
+    <button class="tab-btn" id="tab-contact" onclick="switchTab('contact')">Contact Us</button>
+  </div>
+
+  <!-- ═════════════════════════════════════════
+       ABOUT PAGE
+  ═════════════════════════════════════════ -->
+  <div class="section-panel active" id="panel-about">
+
+    <!-- Hero -->
+    <div class="about-hero">
+      <div>
+        <div class="about-hero-label">Who We Are</div>
+        <h1>Building the <em>Digital</em> Future</h1>
+        <p>Akz IT Solutions is a technology partner for businesses that refuse to stand still. We engineer scalable software, intelligent systems, and digital experiences that set you apart.</p>
+        <a href="#" onclick="switchTab('contact'); return false;" class="hero-cta">
+          Start a Project <span>→</span>
+        </a>
+      </div>
+      <div class="about-hero-visual reveal">
+        <div class="visual-card">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="code-block">
+            <div><span class="cm">// Akz IT Solutions — core values</span></div>
+            <div><span class="kw">const</span> <span class="fn">mission</span> = {</div>
+            <div>&nbsp;&nbsp;innovation: <span class="str">"always"</span>,</div>
+            <div>&nbsp;&nbsp;quality: <span class="str">"uncompromised"</span>,</div>
+            <div>&nbsp;&nbsp;clients: <span class="str">"partners"</span>,</div>
+            <div>&nbsp;&nbsp;delivery: <span class="str">"on-time"</span>,</div>
+            <div>};</div>
+            <br>
+            <div><span class="kw">function</span> <span class="fn">buildSolution</span>(client) {</div>
+            <div>&nbsp;&nbsp;<span class="kw">return</span> listen(client)</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;.then(<span class="fn">design</span>)</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;.then(<span class="fn">build</span>)</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;.then(<span class="fn">deliver</span>);</div>
+            <div>} <span class="code-typed"></span></div>
+          </div>
+          <div class="stat-chips">
+            <div class="chip"><span class="chip-num">150+</span><span class="chip-label">Projects</span></div>
+            <div class="chip"><span class="chip-num">8+</span><span class="chip-label">Years</span></div>
+            <div class="chip"><span class="chip-num">40+</span><span class="chip-label">Experts</span></div>
+            <div class="chip"><span class="chip-num">98%</span><span class="chip-label">Retention</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-divider"></div>
+
+    <!-- Mission -->
+    <div class="mission-section">
+      <div class="reveal">
+        <div class="mission-label">Our Mission</div>
+        <h2 class="mission-heading">Technology that actually works for you</h2>
+      </div>
+      <div class="mission-body reveal">
+        <p>Founded in 2016, Akz IT Solutions emerged from a simple belief: that enterprise-grade technology shouldn't be the exclusive privilege of large corporations. We've spent nearly a decade proving that idea right — delivering robust, scalable software solutions to startups, SMEs, and global enterprises alike.</p>
+        <div class="mission-highlight">
+          "We don't just write code. We solve business problems, unlock growth opportunities, and build lasting technology partnerships."
+        </div>
+        <p>Our multidisciplinary team of engineers, designers, and strategists brings together deep technical expertise with genuine business acumen. Whether it's a greenfield product build, a complex legacy modernization, or an AI integration that transforms your operations — we bring the same level of craftsmanship and commitment every time.</p>
+      </div>
+    </div>
+
+    <!-- Values -->
+    <section class="values-section">
+      <div class="values-inner">
+        <div class="values-header reveal">
+          <h2>What we <em>stand</em> for</h2>
+          <p>Principles that guide every line of code, every design decision, every client conversation.</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <div class="value-icon">⚡</div>
+            <h3>Speed Without Shortcuts</h3>
+            <p>Rapid delivery without sacrificing quality. We use proven frameworks and agile methodology to ship fast and ship right.</p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-icon">🔒</div>
+            <h3>Security First</h3>
+            <p>Security isn't a feature — it's a foundation. Every system we build is designed with data protection and compliance at its core.</p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-icon">🤝</div>
+            <h3>True Partnership</h3>
+            <p>We treat your goals as our own. Transparent communication, honest timelines, and long-term relationships define how we work.</p>
+          </div>
+          <div class="value-card reveal">
+            <div class="value-icon">🔭</div>
+            <h3>Future-Ready</h3>
+            <p>We build for today's needs while keeping tomorrow's scale in mind. Modular, maintainable, and extensible by design.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <div class="team-section">
+      <div class="section-header reveal">
+        <div class="over">The Team</div>
+        <h2>People behind the pixels</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="avatar-bg">👨‍💻</div>
+          </div>
+          <div class="team-card-body">
+            <h4>Arjun Kulkarni</h4>
+            <div class="role">CEO & Founder</div>
+            <p>15+ years in enterprise software. Former tech lead at Infosys. Passionate about using technology to solve real business problems.</p>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <div class="avatar-bg">👩‍🎨</div>
+          </div>
+          <div class="team-card-body">
+            <h4>Priya Mehta</h4>
+            <div class="role">Head of Design</div>
+            <p>UX strategist with a background in cognitive psychology. Believes great design is invisible — until you notice its absence.</p>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <div class="avatar-bg">👨‍🔬</div>
+          </div>
+          <div class="team-card-body">
+            <h4>Rohan Desai</h4>
+            <div class="role">CTO</div>
+            <p>Full-stack architect specializing in distributed systems and cloud-native infrastructure. Open-source contributor and mentor.</p>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-avatar" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+            <div class="avatar-bg">👩‍💼</div>
+          </div>
+          <div class="team-card-body">
+            <h4>Sneha Joshi</h4>
+            <div class="role">Project Director</div>
+            <p>PMP-certified with a talent for translating complex requirements into actionable plans. Client satisfaction champion.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technologies -->
+    <section class="tech-section">
+      <div class="tech-inner">
+        <div class="section-header reveal">
+          <div class="over">Our Stack</div>
+          <h2>Technologies we master</h2>
+        </div>
+        <div class="tech-track">
+          <div class="tech-scroll" id="techScroll">
+            <div class="tech-pill"><span>⚛️</span> React</div>
+            <div class="tech-pill"><span>☕</span> Java</div>
+            <div class="tech-pill"><span>🟢</span> Node.js</div>
+            <div class="tech-pill"><span>🍃</span> MongoDB</div>
+            <div class="tech-pill"><span>🐬</span> MySQL</div>
+            <div class="tech-pill"><span>🐍</span> Python</div>
+            <div class="tech-pill"><span>☁️</span> AWS</div>
+            <div class="tech-pill"><span>🐳</span> Docker</div>
+            <div class="tech-pill"><span>🔷</span> TypeScript</div>
+            <div class="tech-pill"><span>🤖</span> AI/ML</div>
+            <div class="tech-pill"><span>🔥</span> Firebase</div>
+            <div class="tech-pill"><span>🌐</span> GraphQL</div>
+            <!-- duplicate for seamless loop -->
+            <div class="tech-pill"><span>⚛️</span> React</div>
+            <div class="tech-pill"><span>☕</span> Java</div>
+            <div class="tech-pill"><span>🟢</span> Node.js</div>
+            <div class="tech-pill"><span>🍃</span> MongoDB</div>
+            <div class="tech-pill"><span>🐬</span> MySQL</div>
+            <div class="tech-pill"><span>🐍</span> Python</div>
+            <div class="tech-pill"><span>☁️</span> AWS</div>
+            <div class="tech-pill"><span>🐳</span> Docker</div>
+            <div class="tech-pill"><span>🔷</span> TypeScript</div>
+            <div class="tech-pill"><span>🤖</span> AI/ML</div>
+            <div class="tech-pill"><span>🔥</span> Firebase</div>
+            <div class="tech-pill"><span>🌐</span> GraphQL</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /about panel -->
+
+
+  <!-- ═════════════════════════════════════════
+       CONTACT PAGE
+  ═════════════════════════════════════════ -->
+  <div class="section-panel" id="panel-contact">
+
+    <div class="contact-hero">
+      <div class="over">Get In Touch</div>
+      <h1>Let's build something <em>great</em></h1>
+      <p>Have a project idea, a technical challenge, or just want to explore what's possible? Drop us a message — we respond within 24 hours.</p>
+    </div>
+
+    <div class="contact-layout">
+      <!-- Info column -->
+      <div class="contact-info-col">
+        <div class="info-block reveal">
+          <h3>Contact Information</h3>
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div class="info-text">
+              <strong>Address</strong>
+              <span>4th Floor, Tech Park, Baner Road<br>Pune, Maharashtra 411045, India</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📧</div>
+            <div class="info-text">
+              <strong>Email Us</strong>
+              <span>hello@akzitsolutions.com<br>support@akzitsolutions.com</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-text">
+              <strong>Call Us</strong>
+              <span>+91 98765 43210<br>+91 20 6666 7777</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">🌐</div>
+            <div class="info-text">
+              <strong>Follow Us</strong>
+              <div class="social-row">
+                <button class="social-btn" title="LinkedIn">💼</button>
+                <button class="social-btn" title="Twitter">🐦</button>
+                <button class="social-btn" title="GitHub">🐙</button>
+                <button class="social-btn" title="Instagram">📸</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hours-block reveal">
+          <h3>Business Hours</h3>
+          <div class="hours-row">
+            <span class="day">Monday – Friday</span>
+            <span class="time">9:00 AM – 7:00 PM</span>
+            <span class="badge">Open</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Saturday</span>
+            <span class="time">10:00 AM – 3:00 PM</span>
+            <span class="badge">Open</span>
+          </div>
+          <div class="hours-row">
+            <span class="day">Sunday</span>
+            <span class="time">—</span>
+            <span class="badge closed">Closed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form column -->
+      <div class="contact-form-col">
+        <div class="form-card reveal">
+          <h2>Send us a message</h2>
+          <p>Fill in the details and we'll get back to you within one business day.</p>
+
+          <div class="form-row">
+            <div class="field-group">
+              <label>First Name *</label>
+              <input type="text" placeholder="Priya" id="fname">
+            </div>
+            <div class="field-group">
+              <label>Last Name *</label>
+              <input type="text" placeholder="Sharma" id="lname">
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label>Email Address *</label>
+            <input type="email" placeholder="you@company.com" id="email">
+          </div>
+
+          <div class="field-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+91 98765 43210" id="phone">
+          </div>
+
+          <div class="field-group">
+            <label>What can we help with?</label>
+            <div class="service-chips">
+              <div class="service-chip" onclick="toggleChip(this)">Web Development</div>
+              <div class="service-chip" onclick="toggleChip(this)">Mobile App</div>
+              <div class="service-chip" onclick="toggleChip(this)">UI/UX Design</div>
+              <div class="service-chip" onclick="toggleChip(this)">AI / ML</div>
+              <div class="service-chip" onclick="toggleChip(this)">Cloud & DevOps</div>
+              <div class="service-chip" onclick="toggleChip(this)">Consulting</div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label>Budget Range</label>
+            <select id="budget">
+              <option value="" disabled selected>Select a range</option>
+              <option>Under ₹1 Lakh</option>
+              <option>₹1 – 5 Lakhs</option>
+              <option>₹5 – 15 Lakhs</option>
+              <option>₹15 – 50 Lakhs</option>
+              <option>₹50 Lakhs+</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label>Your Message *</label>
+            <textarea id="message" placeholder="Tell us about your project, goals, and timeline..."></textarea>
+          </div>
+
+          <div class="form-footer">
+            <span class="form-note">Your data is safe with us</span>
+            <button class="submit-btn" onclick="submitForm()">
+              Send Message <span class="arrow">→</span>
+            </button>
+          </div>
+
+          <div class="success-msg" id="successMsg">
+            ✅ &nbsp;<strong>Message sent!</strong>&nbsp; We'll be in touch within 24 hours.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map -->
+    <section class="map-section">
+      <div class="map-inner">
+        <h2>Find us in Pune</h2>
+        <div class="map-placeholder">
+          <div class="map-grid"></div>
+          <div class="map-pin">
+            <span class="pin-icon">📍</span>
+            <p>Akz IT Solutions</p>
+            <span>Tech Park, Baner Road, Pune</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <div class="section-header reveal">
+        <div class="over">FAQ</div>
+        <h2>Common questions</h2>
+      </div>
+      <div id="faqList">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            How long does a typical project take?
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">Project timelines vary based on scope. A simple website typically takes 2–4 weeks; a full-scale web application 2–4 months; enterprise platforms 6–12 months. We provide detailed timelines during the discovery phase.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Do you work with startups or only enterprise clients?
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">We work with everyone — from early-stage startups building their first MVP to established enterprises modernizing legacy systems. Our engagement models are flexible to match your stage and budget.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            What happens after the project is delivered?
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">Every delivery includes a 30-day free support period. We also offer ongoing maintenance retainers and can work as a long-term technology partner for product evolution and scaling.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Can you integrate AI/ML into my existing product?
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">Absolutely. AI integration is one of our fastest-growing service areas. From recommendation engines to NLP chatbots and predictive analytics — we can layer intelligent capabilities onto your existing stack.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Is my project information kept confidential?
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">Yes. We sign NDAs before any project discussions. All client data, system architecture, and proprietary information is handled with strict confidentiality per our privacy policy.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /contact panel -->
+
+</div><!-- /page -->
+
+<footer>
+  <p>© 2024 <strong>Akz IT Solutions</strong> — Crafted with <span>♥</span> in Pune, India</p>
+</footer>
+
+<script>
+  // Tab switching
+  function switchTab(tab) {
+    document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + tab).classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('nav-' + tab)?.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Re-trigger reveals
+    setTimeout(checkReveal, 100);
+  }
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Service chips
+  function toggleChip(el) {
+    el.classList.toggle('selected');
+  }
+
+  // Form submit
+  function submitForm() {
+    const fname = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    if (!fname || !email || !message) {
+      alert('Please fill in the required fields: First Name, Email, and Message.');
+      return;
+    }
+    const msg = document.getElementById('successMsg');
+    msg.classList.add('show');
+    setTimeout(() => msg.classList.remove('show'), 5000);
+    document.getElementById('fname').value = '';
+    document.getElementById('lname').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('message').value = '';
+    document.querySelectorAll('.service-chip').forEach(c => c.classList.remove('selected'));
+  }
+
+  // Scroll reveal
+  function checkReveal() {
+    document.querySelectorAll('.reveal').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 60) {
+        el.classList.add('visible');
+      }
+    });
+  }
+  window.addEventListener('scroll', checkReveal, { passive: true });
+  checkReveal();
+</script>
+</body>
+</html>
